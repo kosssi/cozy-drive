@@ -8,8 +8,11 @@ import styles from '../styles'
 
 export class Welcome extends Component {
   register = () => {
-    const platform = this.platform
-    const url = `https://cozy.io/fr/try-it?from=io.cozy.drive.mobile&os=${platform}`
+    let url = 'https://cozy.io/fr/try-it?from=io.cozy.drive.mobile'
+    const platform = cordova && cordova.platformId
+    if (platform) {
+      url += `&os=${platform}`
+    }
     const target = '_blank'
     open(url, target)
   }
