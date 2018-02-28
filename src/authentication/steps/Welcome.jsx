@@ -7,6 +7,13 @@ import { Button } from 'cozy-ui/react'
 import styles from '../styles'
 
 export class Welcome extends Component {
+  register = () => {
+    const platform = this.platform
+    const url = `https://cozy.io/fr/try-it?from=io.cozy.drive.mobile&os=${platform}`
+    const target = '_blank'
+    open(url, target)
+  }
+
   render() {
     const { t, selectServer, register, allowRegistration } = this.props
 
@@ -32,12 +39,7 @@ export class Welcome extends Component {
               {t('mobile.onboarding.welcome.sign_up')}
             </a>
           ) : (
-            <a
-              href={`https://cozy.io/fr/try-it?from=io.cozy.drive.mobile&os=${
-                this.platform
-              }`}
-              className={styles['link']}
-            >
+            <a className={styles['link']} onClick={this.register}>
               {t('mobile.onboarding.welcome.no_account_link')}
             </a>
           )}
